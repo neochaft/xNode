@@ -357,6 +357,16 @@ namespace XNode {
                 this.width = width;
             }
         }
+        
+        [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
+        public class NodeLabelWidthAttribute : Attribute {
+            public int width;
+            /// <summary> Specify a width for this node labels </summary>
+            /// <param name="width"> Width </param>
+            public NodeLabelWidthAttribute(int width) {
+                this.width = width;
+            }
+        }
 #endregion
 
         [Serializable] private class NodePortDictionary : Dictionary<string, NodePort>, ISerializationCallbackReceiver {

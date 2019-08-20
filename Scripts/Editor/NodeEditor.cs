@@ -51,6 +51,7 @@ namespace XNodeEditor {
             // Iterate through serialized properties and draw them like the Inspector (But with ports)
             SerializedProperty iterator = serializedObject.GetIterator();
             bool enterChildren = true;
+            EditorGUIUtility.labelWidth = GetLabelWidth();
             while (iterator.NextVisible(enterChildren)) {
                 enterChildren = false;
                 if (excludes.Contains(iterator.name)) continue;
@@ -84,6 +85,13 @@ namespace XNodeEditor {
             int width;
             if (type.TryGetAttributeWidth(out width)) return width;
             else return 208;
+        }
+        
+        public virtual int GetLabelWidth() {
+            Type type = target.GetType();
+            int width;
+            if (type.TryGetAttributeLabelWidth(out width)) return width;
+            else return 85;
         }
 
         /// <summary> Returns color for target node </summary>
